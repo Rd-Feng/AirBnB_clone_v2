@@ -11,8 +11,6 @@ class BaseModel:
 
     def __init__(self):
         """Instantiation of base model class
-        Args:
-
         Attributes:
             id: unique id generated
             created_at: creation date
