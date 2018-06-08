@@ -2,6 +2,7 @@
 """This is the file storage class for AirBnB"""
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -45,7 +46,7 @@ class FileStorage:
         try:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
                 for key, value in (json.load(f)).items():
-                    value = BaseModel(**value)
+                    value = eval(value["__class__"])(**value)
                     self.__objects[key] = value
         except FileNotFoundError:
             pass

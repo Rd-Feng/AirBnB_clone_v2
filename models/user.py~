@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-"""This is the base model class for AirBnB"""
-import uuid
-import models
-from datetime import datetime
+"""This is the user class"""
+from models.base_model import BaseModel
 
 
-class BaseModel:
-    """This class will defines all common attributes/methods
-    for other classes
+class User(BaseModel):
+    """
     """
 
     def __init__(self, *args, **kwargs):
@@ -56,7 +53,7 @@ class BaseModel:
         Return:
             returns a dictionary of all the key values in __dict__
         """
-        my_dict = dict(self.__dict__)
+        my_dict = self.__dict__
         my_dict["__class__"] = str(type(self).__name__)
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()

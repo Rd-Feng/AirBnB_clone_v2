@@ -2,6 +2,7 @@
 """This is the console for AirBnB"""
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 from datetime import datetime
 
@@ -10,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     """this class is entry point of the command interpreter
     """
     prompt = "(hbnb) "
-    all_classes = {"BaseModel"}
+    all_classes = {"BaseModel", "User"}
 
     def do_quit(self, line):
         """Quit command to exit the program"""
