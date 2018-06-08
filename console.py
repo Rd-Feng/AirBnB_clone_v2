@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 from models import storage
 from datetime import datetime
 
+
 class HBNBCommand(cmd.Cmd):
     """this class is entry point of the command interpreter
     """
@@ -59,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
                 raise KeyError()
         except SyntaxError:
             print("** class name missing **")
-        except  NameError:
+        except NameError:
             print("** class doesn't exist **")
         except IndexError:
             print("** instance id missing **")
@@ -91,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
                 raise KeyError()
         except SyntaxError:
             print("** class name missing **")
-        except  NameError:
+        except NameError:
             print("** class doesn't exist **")
         except IndexError:
             print("** instance id missing **")
@@ -111,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
             print(my_list)
             return
         try:
-            args= line.split(" ")
+            args = line.split(" ")
             if args[0] not in self.all_classes:
                 raise NameError()
             for key in objects:
@@ -149,13 +150,13 @@ class HBNBCommand(cmd.Cmd):
             if len(my_list) < 4:
                 raise ValueError()
             for k, v in objects.items():
-                 if k == key:
+                if k == key:
                     v.__dict__[my_list[2]] = my_list[3]
                     v.save()
                     return
         except SyntaxError:
             print("** class name missing **")
-        except  NameError:
+        except NameError:
             print("** class doesn't exist **")
         except IndexError:
             print("** instance id missing **")
@@ -165,6 +166,7 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         except ValueError:
             print("** value missing **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
