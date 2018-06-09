@@ -10,6 +10,8 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+from shlex import split
+from ast import literal_eval
 
 
 class HBNBCommand(cmd.Cmd):
@@ -18,6 +20,10 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     all_classes = {"BaseModel", "User", "State", "City",
                    "Amenity", "Place", "Review"}
+
+    def emptyline(self):
+        """Ignores empty spaces"""
+        pass
 
     def do_quit(self, line):
         """Quit command to exit the program"""
@@ -143,7 +149,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             if not line:
                 raise SyntaxError()
-            my_list = line.split(" ")
+            my_list = split(line, " ")
             if my_list[0] not in self.all_classes:
                 raise NameError()
             if len(my_list) < 2:
@@ -156,11 +162,11 @@ class HBNBCommand(cmd.Cmd):
                 raise AttributeError()
             if len(my_list) < 4:
                 raise ValueError()
-            for k, v in objects.items():
-                if k == key:
-                    v.__dict__[my_list[2]] = my_list[3]
-                    v.save()
-                    return
+            """for k, v in objects.items():
+                if k == key:"""
+            v = objects[key]
+            v.__dict__[my_list[2]] = my_list[3]
+            v.save()
         except SyntaxError:
             print("** class name missing **")
         except NameError:
@@ -173,6 +179,66 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         except ValueError:
             print("** value missing **")
+
+    def count(self, line):
+        """count the number of instances of a class
+        """
+        counter = 0
+        try:
+            my_list = split(line, " ")
+            if my_list[0] not in self.all_classes:
+                raise NameError()
+            objects = storage.all()
+            for key in objects:
+                name = key.split('.')
+                if name[0] == my_list[0]:
+                    counter += 1
+            print(counter)
+        except NameError:
+            print("** class doesn't exist **")
+
+    def strip_clean(self, args):
+        """strips the argument and return a string of command
+        Args:
+            args: input list of args
+        Return:
+            returns string of argumetns
+        """
+        new_list = []
+        new_list.append(args[0])
+        try:
+            my_dict = literal_eval(
+                args[1][args[1].find('{'):args[1].find('}')+1])
+        except Exception:
+            my_dict = None
+        print(my_dict)
+        new_str = args[1][args[1].find('(')+1:args[1].find(')')]
+        new_list.append(" ".join(new_str.split(", ")))
+        return " ".join(i for i in new_list)
+
+    def dictionary(self, args):
+        """
+        """
+        pass
+
+    def default(self, line):
+        """retrieve all instances of a class and
+        retrieve the number of instances
+        """
+        my_list = line.split('.')
+        if len(my_list) >= 2:
+            if my_list[1] == "all()":
+                self.do_all(my_list[0])
+            elif my_list[1] == "count()":
+                self.count(my_list[0])
+            elif my_list[1][:4] == "show":
+                self.do_show(self.strip_clean(my_list))
+            elif my_list[1][:7] == "destroy":
+                self.do_destroy(self.strip_clean(my_list))
+            elif my_list[1][:6] == "update":
+                self.do_update(self.strip_clean(my_list))
+        else:
+            cmd.Cmd.default(self, line)
 
 
 if __name__ == '__main__':
