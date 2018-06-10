@@ -220,7 +220,6 @@ class HBNBCommand(cmd.Cmd):
         new_list.append(" ".join(new_str.split(", ")))
         return " ".join(i for i in new_list)
 
-
     def default(self, line):
         """retrieve all instances of a class and
         retrieve the number of instances
