@@ -211,15 +211,15 @@ class HBNBCommand(cmd.Cmd):
                 args[1][args[1].find('{'):args[1].find('}')+1])
         except Exception:
             my_dict = None
-        print(my_dict)
+        if isinstance(my_dict, dict):
+            new_str = args[1][args[1].find('(')+1:args[1].find(')')]
+            new_list.append((new_str.split(", "))[0])
+            new_list.append(my_dict)
+            return new_list
         new_str = args[1][args[1].find('(')+1:args[1].find(')')]
         new_list.append(" ".join(new_str.split(", ")))
         return " ".join(i for i in new_list)
 
-    def dictionary(self, args):
-        """
-        """
-        pass
 
     def default(self, line):
         """retrieve all instances of a class and
@@ -236,7 +236,14 @@ class HBNBCommand(cmd.Cmd):
             elif my_list[1][:7] == "destroy":
                 self.do_destroy(self.strip_clean(my_list))
             elif my_list[1][:6] == "update":
-                self.do_update(self.strip_clean(my_list))
+                args = self.strip_clean(my_list)
+                if isinstance(args, list):
+                    obj = storage.all()
+                    key = args[0] + '.' + args[1]
+                    for k, v in args[2].items():
+                        setattr(obj[key], k, v)
+                else:
+                    self.do_update(args)
         else:
             cmd.Cmd.default(self, line)
 
