@@ -1,62 +1,70 @@
 #!/usr/bin/python3
-
+"""test for city"""
 import unittest
 import os
-import pep8
 from models.city import City
 from models.base_model import BaseModel
+import pep8
 
 
 class TestCity(unittest.TestCase):
+    """this will test the city class"""
 
     @classmethod
     def setUpClass(cls):
-        cls.city1 = City()
-        cls.city1.name = "Raleigh"
-        cls.city1.state_id = "NC"
+        """set up for test"""
+        cls.city = City()
+        cls.city.name = "LA"
+        cls.city.state_id = "CA"
 
     @classmethod
     def teardown(cls):
-        del cls.city1
+        """at the end of the test this will tear it down"""
+        del cls.city
 
     def tearDown(self):
+        """teardown"""
         try:
             os.remove("file.json")
         except:
             pass
 
-    def test_style_check(self):
-        """
-        Tests pep8 style
-        """
+    def est_pep8_City(self):
+        """Tests pep8 style"""
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(['models/city.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
-    def test_is_subclass(self):
-        self.assertTrue(issubclass(self.city1.__class__, BaseModel), True)
-
-    def test_checking_for_functions(self):
+    def test_checking_for_docstring_City(self):
+        """checking for docstrings"""
         self.assertIsNotNone(City.__doc__)
 
-    def test_has_attributes(self):
-        self.assertTrue('id' in self.city1.__dict__)
-        self.assertTrue('created_at' in self.city1.__dict__)
-        self.assertTrue('updated_at' in self.city1.__dict__)
-        self.assertTrue('state_id' in self.city1.__dict__)
-        self.assertTrue('name' in self.city1.__dict__)
+    def test_method_City(self):
+        """chekcing if city have methods"""
+        self.assertTrue('id' in self.city.__dict__)
+        self.assertTrue('created_at' in self.city.__dict__)
+        self.assertTrue('updated_at' in self.city.__dict__)
+        self.assertTrue('state_id' in self.city.__dict__)
+        self.assertTrue('name' in self.city.__dict__)
 
-    def test_attributes_are_strings(self):
-        self.assertEqual(type(self.city1.name), str)
-        self.assertEqual(type(self.city1.state_id), str)
+    def test_is_subclass_City(self):
+        """chekcing if city have methods"""
+        self.assertTrue(issubclass(self.city.__class__, BaseModel), True)
+
+    def test_attribut_types_City(self):
+        """test attribute type for City"""
+        self.assertEqual(type(self.city.name), str)
+        self.assertEqual(type(self.city.state_id), str)
 
 
-    def test_save(self):
-        self.city1.save()
-        self.assertNotEqual(self.city1.created_at, self.city1.updated_at)
+    def test_save_City(self):
+        """test if the save works"""
+        self.city.save()
+        self.assertNotEqual(self.city.created_at, self.city.updated_at)
 
-    def test_to_dict(self):
-        self.assertEqual('to_dict' in dir(self.city1), True)
+    def test_to_dict_City(self):
+        """test if dictionary works"""
+        self.assertEqual('to_dict' in dir(self.city), True)
 
 if __name__ == "__main__":
     unittest.main()
