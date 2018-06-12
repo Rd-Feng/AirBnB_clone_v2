@@ -8,6 +8,7 @@ import os
 import json
 import console
 import tests
+from tests import test_console
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -56,7 +57,7 @@ class TestConsole(unittest.TestCase):
 
     def test_docstrings_in_test_console(self):
         """Test docstrings exist in test_console.py"""
-        self.assertTrue(len(tests.test_console.__doc__) >= 1)
+        self.assertTrue(len(test_console.__doc__) >= 1)
 
     """Test command interpreter outputs"""
     def test_create(self):
