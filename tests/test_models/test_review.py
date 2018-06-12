@@ -53,18 +53,18 @@ class TestReview(unittest.TestCase):
         """test if review is subclass of BaseModel"""
         self.assertTrue(issubclass(self.rev.__class__, BaseModel), True)
 
-    def test_attributes_are_strings(self):
+    def test_attribute_types_Review(self):
         """test attribute type for Review"""
         self.assertEqual(type(self.rev.text), str)
         self.assertEqual(type(self.rev.place_id), str)
         self.assertEqual(type(self.rev.user_id), str)
 
-    def test_save(self):
+    def test_save_Review(self):
         """test if the save works"""
         self.rev.save()
         self.assertNotEqual(self.rev.created_at, self.rev.updated_at)
 
-    def test_to_dict(self):
+    def test_to_dict_Review(self):
         """test if dictionary works"""
         self.assertEqual('to_dict' in dir(self.rev), True)
 

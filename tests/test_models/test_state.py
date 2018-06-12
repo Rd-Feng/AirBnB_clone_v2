@@ -1,58 +1,67 @@
 #!/usr/bin/python3
-
+"""test for state"""
 import unittest
 import os
-import pep8
 from models.state import State
 from models.base_model import BaseModel
+import pep8
 
 
 class TestState(unittest.TestCase):
+    """this will test the State class"""
 
     @classmethod
     def setUpClass(cls):
-        cls.state1 = State()
-        cls.state1.name = "North_Carolina_AKA_THE_BEST_STATE"
+        """set up for test"""
+        cls.state = State()
+        cls.state.name = "CA"
 
     @classmethod
     def teardown(cls):
-        del cls.state1
+        """at the end of the test this will tear it down"""
+        del cls.state
 
     def tearDown(self):
+        """teardown"""
         try:
             os.remove("file.json")
         except:
             pass
 
-    def test_style_check(self):
-        """
-        Tests pep8 style
-        """
+    def test_pep8_Review(self):
+        """Tests pep8 style"""
         style = pep8.StyleGuide(quiet=True)
         p = style.check_files(['models/state.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
-    def test_is_subclass(self):
-        self.assertTrue(issubclass(self.state1.__class__, BaseModel), True)
-
-    def test_checking_for_functions(self):
+    def test_checking_for_docstring_State(self):
+        """checking for docstrings"""
         self.assertIsNotNone(State.__doc__)
 
-    def test_has_attributes(self):
-        self.assertTrue('id' in self.state1.__dict__)
-        self.assertTrue('created_at' in self.state1.__dict__)
-        self.assertTrue('updated_at' in self.state1.__dict__)
-        self.assertTrue('name' in self.state1.__dict__)
+    def test_attributes_State(self):
+        """chekcing if State have attributes"""
+        self.assertTrue('id' in self.state.__dict__)
+        self.assertTrue('created_at' in self.state.__dict__)
+        self.assertTrue('updated_at' in self.state.__dict__)
+        self.assertTrue('name' in self.state.__dict__)
 
-    def test_attributes_are_strings(self):
-        self.assertEqual(type(self.state1.name), str)
+    def test_is_subclass_State(self):
+        """test if State is subclass of BaseModel"""
+        self.assertTrue(issubclass(self.state.__class__, BaseModel), True)
 
-    def test_save(self):
-        self.state1.save()
-        self.assertNotEqual(self.state1.created_at, self.state1.updated_at)
+    def test_attribute_types_State(self):
+        """test attribute type for State"""
+        self.assertEqual(type(self.state.name), str)
 
-    def test_to_dict(self):
-        self.assertEqual('to_dict' in dir(self.state1), True)
+    def test_save_State(self):
+        """test if the save works"""
+        self.state.save()
+        self.assertNotEqual(self.state.created_at, self.state.updated_at)
+
+    def test_to_dict_State(self):
+        """test if dictionary works"""
+        self.assertEqual('to_dict' in dir(self.state), True)
+
 
 if __name__ == "__main__":
     unittest.main()
