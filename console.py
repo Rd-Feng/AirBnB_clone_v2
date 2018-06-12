@@ -40,6 +40,8 @@ class HBNBCommand(cmd.Cmd):
             NameError: when there is no object taht has the name
         """
         try:
+            if not line:
+                raise SyntaxError()
             my_list = line.split(" ")
             obj = eval("{}()".format(my_list[0]))
             obj.save()
@@ -162,9 +164,13 @@ class HBNBCommand(cmd.Cmd):
                 raise AttributeError()
             if len(my_list) < 4:
                 raise ValueError()
-            """for k, v in objects.items():
-                if k == key:"""
             v = objects[key]
+            print(v.__dict__[my_list[2]])
+            """
+            data_type = type(v.__dict__[my_list[2]])
+            print(data_type)
+            value = data_type(my_list[3])
+            """
             v.__dict__[my_list[2]] = my_list[3]
             v.save()
         except SyntaxError:
