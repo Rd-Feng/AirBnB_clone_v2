@@ -119,6 +119,7 @@ class HBNBCommand(cmd.Cmd):
         Exceptions:
             NameError: when there is no object taht has the name
         """
+        """
         objects = storage.all()
         my_list = []
         if not line:
@@ -137,6 +138,8 @@ class HBNBCommand(cmd.Cmd):
             print(my_list)
         except NameError:
             print("** class doesn't exist **")
+        """
+        pass
 
     def do_update(self, line):
         """Updates an instanceby adding or updating attribute
@@ -166,11 +169,6 @@ class HBNBCommand(cmd.Cmd):
                 raise ValueError()
             v = objects[key]
             print(v.__dict__[my_list[2]])
-            """
-            data_type = type(v.__dict__[my_list[2]])
-            print(data_type)
-            value = data_type(my_list[3])
-            """
             v.__dict__[my_list[2]] = my_list[3]
             v.save()
         except SyntaxError:
@@ -185,6 +183,7 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         except ValueError:
             print("** value missing **")
+
 
     def count(self, line):
         """count the number of instances of a class
