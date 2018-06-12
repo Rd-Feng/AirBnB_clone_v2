@@ -40,8 +40,8 @@ class TestReview(unittest.TestCase):
         """checking for docstrings"""
         self.assertIsNotNone(Review.__doc__)
 
-    def test_has_attributes_review(self):
-        """chekcing if Place have attributes"""
+    def test_attributes_review(self):
+        """chekcing if review have attributes"""
         self.assertTrue('id' in self.rev.__dict__)
         self.assertTrue('created_at' in self.rev.__dict__)
         self.assertTrue('updated_at' in self.rev.__dict__)
@@ -50,7 +50,7 @@ class TestReview(unittest.TestCase):
         self.assertTrue('user_id' in self.rev.__dict__)
 
     def test_is_subclass_Review(self):
-        """test if Amenity is subclass of Review"""
+        """test if review is subclass of BaseModel"""
         self.assertTrue(issubclass(self.rev.__class__, BaseModel), True)
 
     def test_attributes_are_strings(self):

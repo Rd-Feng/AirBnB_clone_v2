@@ -38,8 +38,8 @@ class TestAmenity(unittest.TestCase):
         """checking for docstrings"""
         self.assertIsNotNone(Amenity.__doc__)
 
-    def test_method_Amenity(self):
-        """chekcing if amenity have methods"""
+    def test_attributes_Amenity(self):
+        """chekcing if amenity have attibutes"""
         self.assertTrue('id' in self.amenity.__dict__)
         self.assertTrue('created_at' in self.amenity.__dict__)
         self.assertTrue('updated_at' in self.amenity.__dict__)
@@ -49,7 +49,7 @@ class TestAmenity(unittest.TestCase):
         """test if Amenity is subclass of Basemodel"""
         self.assertTrue(issubclass(self.amenity.__class__, BaseModel), True)
 
-    def test_attribut_types_Amenity(self):
+    def test_attribute_types_Amenity(self):
         """test attribute type for Amenity"""
         self.assertEqual(type(self.amenity.name), str)
 
@@ -61,6 +61,7 @@ class TestAmenity(unittest.TestCase):
     def test_to_dict_Amenity(self):
         """test if dictionary works"""
         self.assertEqual('to_dict' in dir(self.amenity), True)
+
 
 if __name__ == "__main__":
     unittest.main()

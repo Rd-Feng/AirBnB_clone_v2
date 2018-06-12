@@ -45,9 +45,11 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_checking_for_docstring_Place(self):
+        """checking for docstrings"""
         self.assertIsNotNone(Place.__doc__)
 
-    def test_has_attributes_Place(self):
+    def test_attributes_Place(self):
+        """chekcing if amenity have attributes"""
         self.assertTrue('id' in self.place.__dict__)
         self.assertTrue('created_at' in self.place.__dict__)
         self.assertTrue('updated_at' in self.place.__dict__)
@@ -64,9 +66,11 @@ class TestPlace(unittest.TestCase):
         self.assertTrue('amenity_ids' in self.place.__dict__)
 
     def test_is_subclass_Place(self):
+        """test if Place is subclass of Basemodel"""
         self.assertTrue(issubclass(self.place.__class__, BaseModel), True)
 
-    def test_attribut_types_Place(self):
+    def test_attribute_types_Place(self):
+        """test attribute type for Place"""
         self.assertEqual(type(self.place.city_id), str)
         self.assertEqual(type(self.place.user_id), str)
         self.assertEqual(type(self.place.name), str)
@@ -80,11 +84,14 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(type(self.place.amenity_ids), list)
 
     def test_save_Place(self):
+        """test if the save works"""
         self.place.save()
         self.assertNotEqual(self.place.created_at, self.place.updated_at)
 
     def test_to_dict_Place(self):
+        """test if dictionary works"""
         self.assertEqual('to_dict' in dir(self.place), True)
+
 
 if __name__ == "__main__":
     unittest.main()
