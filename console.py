@@ -164,8 +164,11 @@ class HBNBCommand(cmd.Cmd):
             if len(my_list) < 4:
                 raise ValueError()
             v = objects[key]
-            v.__dict__[my_list[2]] = my_list[3]
-            v.save()
+            try:
+                v.__dict__[my_list[2]] = eval(my_list[3])
+            except Exception:
+                v.__dict__[my_list[2]] = my_list[3]
+                v.save()
         except SyntaxError:
             print("** class name missing **")
         except NameError:
@@ -237,9 +240,9 @@ class HBNBCommand(cmd.Cmd):
                 args = self.strip_clean(my_list)
                 if isinstance(args, list):
                     obj = storage.all()
-                    key = args[0] + '.' + args[1]
+                    key = args[0] + ' ' + args[1]
                     for k, v in args[2].items():
-                        setattr(obj[key], k, v)
+                        self.do_update(key + ' "{}" "{}"'.format(k, v))
                 else:
                     self.do_update(args)
         else:
