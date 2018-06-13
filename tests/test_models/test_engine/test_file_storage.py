@@ -20,12 +20,16 @@ class TestFileStorage(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """set up for test"""
-        pass
+        cls.user = User()
+        cls.user.first_name = "Kev"
+        cls.user.last_name = "Yo"
+        cls.user.email = "1234@yahoo.com"
+        cls.storage = FileStorage()
 
     @classmethod
     def teardown(cls):
         """at the end of the test this will tear it down"""
-        pass
+        del cls.user
 
     def teardown(self):
         """teardown"""
@@ -53,7 +57,7 @@ class TestFileStorage(unittest.TestCase):
         storage = FileStorage()
         obj = storage.all()
         user = User()
-        user.id = "123-abc"
+        user.id = 123455
         user.name = "Kevin"
         storage.new(user)
         key = user.__class__.__name__ + "." + str(user.id)
