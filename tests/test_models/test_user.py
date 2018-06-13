@@ -30,6 +30,7 @@ class TestUser(unittest.TestCase):
             os.remove("file.json")
         except:
             pass
+
     def test_pep8_User(self):
         """Tests pep8 style"""
         style = pep8.StyleGuide(quiet=True)
