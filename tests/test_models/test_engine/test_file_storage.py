@@ -63,19 +63,34 @@ class TestFileStorage(unittest.TestCase):
         key = user.__class__.__name__ + "." + str(user.id)
         self.assertIsNotNone(obj[key])
 
-    def test_reload(self):
-        """test if reload works"""
-        storage = FileStorage()
+    def test_reload_filestorage(self):
+        """
+        tests reload
+        """
+        self.storage.save()
+        Root = os.path.dirname(os.path.abspath("console.py"))
+        path = os.path.join(Root, "file.json")
+        with open(path, 'r') as f:
+            lines = f.readlines()
         try:
-            os.remove("file.json")
+            os.remove(path)
         except:
             pass
-        with open("file.json", "w") as f:
+        self.storage.save()
+        with open(path, 'r') as f:
+            lines2 = f.readlines()
+        self.assertEqual(lines, lines2)
+        try:
+            os.remove(path)
+        except:
+            pass
+        with open(path, "w") as f:
             f.write("{}")
-        with open("file.json", "r") as r:
+        with open(path, "r") as r:
             for line in r:
                 self.assertEqual(line, "{}")
-        self.assertIs(storage.reload(), None)
+        self.assertIs(self.storage.reload(), None)
+
 
 if __name__ == "__main__":
     unittest.main()
