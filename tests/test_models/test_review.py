@@ -27,7 +27,7 @@ class TestReview(unittest.TestCase):
         """teardown"""
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
 
     def test_pep8_Review(self):
@@ -67,6 +67,7 @@ class TestReview(unittest.TestCase):
     def test_to_dict_Review(self):
         """test if dictionary works"""
         self.assertEqual('to_dict' in dir(self.rev), True)
+
 
 if __name__ == "__main__":
     unittest.main()

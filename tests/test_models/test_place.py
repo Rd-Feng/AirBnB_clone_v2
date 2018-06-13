@@ -35,7 +35,7 @@ class TestPlace(unittest.TestCase):
         """teardown"""
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
 
     def test_pep8_Place(self):
