@@ -31,7 +31,7 @@ class TestFileStorage(unittest.TestCase):
         """at the end of the test this will tear it down"""
         del cls.user
 
-    def teardown(self):
+    def tearDown(self):
         """teardown"""
         try:
             os.remove("file.json")
