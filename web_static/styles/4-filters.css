@@ -15,8 +15,8 @@ button {
     width: 20%;
     border-style: none;
     border-radius: 4px;
-    top: 50%
-    right: 30px
+    top: 15%;
+    right: 30px;
 }
 button:hover {
     opacity: 0.9;
