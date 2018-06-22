@@ -61,10 +61,10 @@ button:hover {
 .amenities .popover {
     padding: 20px 0;
     margin-left: -5px;
-    margin-top: 3px;
+    margin-top: 1%;
 }
 .locations .popover {
-    margin-top: 3px;
+    margin-top: 1%;
 }
 .popover ul {
     list-style-type: none;
