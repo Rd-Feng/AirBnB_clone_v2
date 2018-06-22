@@ -49,7 +49,6 @@ button:hover {
 .amenities {
     height: 100%;
     width: 25%;
-    margin-left: -4px:
 }
 .popover {
     visibility: hidden;
@@ -61,6 +60,11 @@ button:hover {
 }
 .amenities .popover {
     padding: 20px 0;
+    margin-left: -5px;
+    margin-top: 1px;
+}
+.locations .popover {
+    margin-top: 1px;
 }
 .popover ul {
     list-style-type: none;
