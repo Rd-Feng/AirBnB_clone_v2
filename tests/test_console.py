@@ -232,5 +232,20 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "** value missing **\n", f.getvalue())
 
+    def test_zz_create(self):
+        """Test expanded console functionality
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd('create User first_name="Gertrude" '
+                               'invalid_param=unvalid '
+                               'last_name=s71ll_n07_va11d')
+            user_id = f.getvalue()
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("show User " + user_id)
+            out = f.getvalue()
+            self.assertTrue("Gertrude" in out)
+            self.assertFalse("unvalid" in out)
+            self.assertFalse("last_name" in out)
+
 if __name__ == "__main__":
     unittest.main()
