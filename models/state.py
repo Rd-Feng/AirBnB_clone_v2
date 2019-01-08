@@ -20,7 +20,8 @@ class State(BaseModel, Base):
         """get all cities with the current state id
         from filestorage
         """
-        l = [v for k, v in models.storage.all(models.City).items()
+        l = [
+            v for k, v in models.storage.all(models.City).items()
             if v.state_id == self.id
         ]
         return (l)
