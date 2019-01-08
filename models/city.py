@@ -11,3 +11,4 @@ class City(BaseModel):
     """
     state_id = ""
     name = ""
+    places = relationship("Place", cascade="all, delete", backref="cities")
