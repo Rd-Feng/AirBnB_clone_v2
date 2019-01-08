@@ -3,6 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Float, Table, ForeignKey
 from sqlalchemy.orm import relationship
+import models
 
 
 place_amenity = Table(
@@ -46,3 +47,14 @@ class Place(BaseModel, Base):
         backref="place",
         viewonly=False
     )
+
+    @property
+    def reviews(self):
+        """get all cities with the current state id
+        from filestorage
+        """
+        list = [
+            v for k, v in models.storage.all(models.Review).items()
+            if v.place_id == self.id
+        ]
+        return (list)
