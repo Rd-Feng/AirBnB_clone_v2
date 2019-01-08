@@ -9,7 +9,9 @@ import models
 class State(BaseModel, Base):
     """This is the class for State
     Attributes:
+        __tablename__: table name
         name: input name
+        cities: relation to cities table
     """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
