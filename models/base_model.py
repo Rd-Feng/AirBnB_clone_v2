@@ -41,6 +41,11 @@ class BaseModel:
             self.created_at = self.updated_at = datetime.now()
         if not self.id:
             self.id = str(uuid.uuid4())
+        d = datetime.now()
+        if not self.created_at:
+            self.created_at = self.updated_at = d
+        if not self.updated_at:
+            self.updated_at = d
 
     def __str__(self):
         """returns a string
