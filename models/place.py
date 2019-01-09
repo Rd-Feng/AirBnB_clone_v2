@@ -50,11 +50,22 @@ class Place(BaseModel, Base):
 
     @property
     def reviews(self):
-        """get all cities with the current state id
+        """get all refiews with the current place id
         from filestorage
         """
         list = [
             v for k, v in models.storage.all(models.Review).items()
             if v.place_id == self.id
+        ]
+        return (list)
+
+    @property
+    def amenities(self):
+        """get all amenities with the current place id
+        from filestorage
+        """
+        list = [
+            v for k, v in models.storage.all(models.Amenity).items()
+            if v.id in self.amenity_ids
         ]
         return (list)
