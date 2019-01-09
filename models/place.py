@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Float, Table, ForeignKey
 from sqlalchemy.orm import relationship
 import models
+from os import environ as env
 
 
 place_amenity = Table(
@@ -39,9 +40,9 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
-    reviews = relationship("Review", cascade="all, delete", backref="place")
     amenity_ids = []
-    amenities = relationship(
+    __reviews = relationship("Review", cascade="all, delete", backref="place")
+    __amenities = relationship(
         "Amenity",
         secondary=place_amenity,
         backref="place",
@@ -53,6 +54,8 @@ class Place(BaseModel, Base):
         """get all refiews with the current place id
         from filestorage
         """
+        if env.get('HBNB_TYPE_STORAGE') == 'db':
+            return self.__reviews
         list = [
             v for k, v in models.storage.all(models.Review).items()
             if v.place_id == self.id
@@ -62,8 +65,9 @@ class Place(BaseModel, Base):
     @property
     def amenities(self):
         """get all amenities with the current place id
-        from filestorage
         """
+        if env.get('HBNB_TYPE_STORAGE') == 'db':
+            return self.__amenities
         list = [
             v for k, v in models.storage.all(models.Amenity).items()
             if v.id in self.amenity_ids
