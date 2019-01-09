@@ -1,6 +1,6 @@
 # HBNB
 
-This is the console /command interpreter for the Holberton Airbnb clone project. The console can be used to store objects in and retrieve objects from a JSON.
+This is the console /command interpreter for the Holberton Airbnb clone project. The console can be used to store objects in and retrieve objects using either a MySQL database, or a JSON file.
 
 ### Supported classes:
 * BaseModel
@@ -19,12 +19,17 @@ This is the console /command interpreter for the Holberton Airbnb clone project.
 * quit/EOF - quit the console
 * help - see descriptions of commands
 
-To start, navigate to the project folder and enter `./console.py` in the shell.
+To start the console using JSON file storage, navigate to the project folder and enter `./console.py` in the shell.
+
+To start the console using MySQL database as storage method, navigate to the project folder and enter:
+`HBNB_MYSQL_USER=<username> HBNB_MYSQL_PWD=<password HBNB_MYSQL_HOST=<server hostname> HBNB_MYSQL_DB=<database name> HBNB_TYPE_STORAGE=db ./console.py`
 
 #### Create
-`create <class name>`
+`create <class name> [<attr name>="<attr value>" ...]`
 Ex:
 `create BaseModel`
+`create State name="California"`
+`create State name="New_York"`
 
 #### Show
 `show <class name> <object id>`
@@ -52,3 +57,9 @@ Ex:
 Additionally, the console supports `<class name>.<command>(<parameters>)` syntax.
 Ex:
 `City.show(my_city_id)`
+
+### Author
+Cameron Eng <cameron.eng@holbertonschool.com>
+Rui Feng <394@holbertonschool.com>
+Miranda Evans <miranda.r.evans@gmail.com>
+Kevin Yook <kevin.yook@holbertonschool.com>
