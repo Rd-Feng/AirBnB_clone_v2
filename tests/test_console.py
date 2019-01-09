@@ -83,7 +83,8 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "** class doesn't exist **\n", f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            self.consol.onecmd("create User")
+            self.consol.onecmd("create User email='person@personmail.com' "
+                               "password='person'")
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd("all User")
             self.assertEqual(
@@ -104,7 +105,7 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "** instance id missing **\n", f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            self.consol.onecmd("show BaseModel abcd-123")
+            self.consol.onecmd("show State abcd-123")
             self.assertEqual(
                 "** no instance found **\n", f.getvalue())
 
@@ -194,7 +195,7 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "** class doesn't exist **\n", f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            self.consol.onecmd("BaseModel.show(abcd-123)")
+            self.consol.onecmd("State.show(abcd-123)")
             self.assertEqual(
                 "** no instance found **\n", f.getvalue())
 
@@ -238,7 +239,9 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd('create User first_name="Gertrude" '
                                'invalid_param=unvalid '
-                               'last_name=s71ll_n07_va11d')
+                               'last_name=s71ll_n07_va11d '
+                               'email="person@personmail.com" '
+                               'password="person"')
             user_id = f.getvalue()
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd("show User " + user_id)

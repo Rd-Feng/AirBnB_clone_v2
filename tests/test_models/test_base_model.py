@@ -4,6 +4,7 @@ import unittest
 import os
 from models.base_model import BaseModel
 import pep8
+from os import environ as env
 
 
 class TestBaseModel(unittest.TestCase):
@@ -52,10 +53,18 @@ class TestBaseModel(unittest.TestCase):
         """test if the base is an type BaseModel"""
         self.assertTrue(isinstance(self.base, BaseModel))
 
+    @unittest.skipIf(env.get('HBNB_TYPE_STORAGE') == 'db',
+                     "dbstorage does not support BaseModel objects")
     def test_save_BaesModel(self):
         """test if the save works"""
         self.base.save()
         self.assertNotEqual(self.base.created_at, self.base.updated_at)
+
+    @unittest.skipIf(env.get('HBNB_TYPE_STORAGE') != 'db',
+                     "dbstorage does not support BaseModel objects")
+    def test_save_BaseModeldb(self):
+        """empty test for requirements"""
+        pass
 
     def test_to_dict_BaseModel(self):
         """test if dictionary works"""
