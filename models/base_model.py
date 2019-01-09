@@ -16,7 +16,7 @@ class BaseModel:
         created_at: datetime obj, indicate when the instance is created
         updated_at: datetime obj, indicate when the instance is updated
     """
-    id = Column(String(60), primary_key=True, default=str(uuid.uuid4()))
+    id = Column(String(60), primary_key=True)
     created_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow(), nullable=False)
 
@@ -39,6 +39,8 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
+        if not self.id:
+            self.id = str(uuid.uuid4())
 
     def __str__(self):
         """returns a string
