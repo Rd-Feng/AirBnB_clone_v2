@@ -237,7 +237,7 @@ class TestConsole(unittest.TestCase):
         """Test expanded console functionality
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            self.consol.onecmd('create User first_name="Gertrude" '
+            self.consol.onecmd('create User first_name="Ger_trude" '
                                'invalid_param=unvalid '
                                'last_name=s71ll_n07_va11d '
                                'email="person@personmail.com" '
@@ -246,9 +246,9 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd("show User " + user_id)
             out = f.getvalue()
-            self.assertTrue("Gertrude" in out)
+            self.assertTrue("Ger trude" in out)
             self.assertFalse("unvalid" in out)
-            self.assertFalse("last_name" in out)
+            self.assertFalse("s71ll_n07_va11d" in out)
 
 if __name__ == "__main__":
     unittest.main()
