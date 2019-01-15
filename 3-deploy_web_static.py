@@ -57,6 +57,7 @@ def do_deploy(archive_path):
     except:
         return False
 
+
 def deploy():
     """pack web_static content and deploy it to web servers
     """
