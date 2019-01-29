@@ -1,0 +1,15 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  height:60px;
+  width:100%;
+  border-top: 1px solid #CCCCCC;
+  background-color: white;
+}
+
+span.footer_placeholder {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+}
