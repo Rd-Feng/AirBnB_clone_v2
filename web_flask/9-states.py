@@ -5,7 +5,6 @@ from flask import Flask, render_template
 from models import storage
 from os import environ as env
 app = Flask(__name__)
-app.url_map.strict_slashes = False
 
 
 @app.teardown_appcontext
@@ -15,8 +14,8 @@ def shutdown_session(exception=None):
     storage.close()
 
 
-@app.route("/states/<id>")
-@app.route("/states")
+@app.route("/states/<id>", strict_slashes=False)
+@app.route("/states", strict_slashes=False)
 def states_cities_list(id=None):
     """show state and cities if id is given
     otherwise list all states
