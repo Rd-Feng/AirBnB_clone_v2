@@ -94,5 +94,3 @@ class DBStorage:
         """
         if self.__session:
             self.__session.close()
-            factory = sessionmaker(bind=self.__engine, expire_on_commit=True)
-            self.__session = scoped_session(factory)()
