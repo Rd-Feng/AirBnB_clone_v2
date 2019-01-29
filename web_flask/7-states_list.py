@@ -11,10 +11,10 @@ app.url_map.strict_slashes = False
 def shutdown_session(exception=None):
     storage.close()
 
+
 @app.route("/states_list")
 def states_list():
-    states = storage.all("State")
-    return render_template('7-states_list.html', states=states)
+    return render_template('7-states_list.html', states=storage.all("State"))
 
 
 app.run(host='0.0.0.0', port=5000)
