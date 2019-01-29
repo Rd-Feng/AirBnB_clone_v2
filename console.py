@@ -159,7 +159,7 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(" ")
             if args[0] not in self.all_classes:
                 raise NameError()
-            objects = storage.all(self.all_classes.get(args[0]))
+            objects = storage.all(args[0])
             for k, v in objects.items():
                 my_list.append(v)
             print(my_list)
