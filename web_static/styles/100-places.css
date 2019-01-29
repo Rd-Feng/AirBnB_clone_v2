@@ -94,3 +94,60 @@
   background-repeat: no-repeat;
   background-position-x: center;
 }
+
+.amenities_list, .reviews_list {
+  margin-top: 40px;
+}
+
+.amenities_list > h2, .reviews_list > h2 {
+  font-size: 16px;
+  border-bottom: #DDDDDD 1px solid;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.amenities_pad ul,
+.reviews_pad ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.amenities_pad li {
+  text-indent: 25px;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.reviews_pad h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.reviews_pad p {
+  font-size: 12px;
+  margin: 0;
+}
+
+.reviews_pad li {
+  padding-bottom: 1px;
+  margin-bottom: 25px;
+}
+
+.tv {
+  background: url("../images/icon_tv.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.wifi {
+  background: url("../images/icon_wifi.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.pets {
+  background: url("../images/icon_pets.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}

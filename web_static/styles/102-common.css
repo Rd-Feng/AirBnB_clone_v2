@@ -20,3 +20,11 @@ span.footer_placeholder {
   margin-left: auto;
   margin-right: auto;
 }
+
+@media screen and (max-width: 645px) {
+  .container {
+    max-width: 100vw;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

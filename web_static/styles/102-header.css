@@ -5,5 +5,13 @@ header {
   background: url("../images/logo.png");
   background-repeat: no-repeat;
   background-position: 20px;
-  background-color: white;
+}
+
+@media screen and (max-width: 645px) {
+  header {
+    border-bottom: none;
+    background-position: center;
+    background-size: 30%;
+    background-color: #FAFAFA;
+  }
 }
