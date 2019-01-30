@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/styles/4-common.css">
+    <link rel="stylesheet" href="../static/styles/3-header.css">
+    <link rel="stylesheet" href="../static/styles/3-footer.css">
+    <link rel="stylesheet" href="../static/styles/6-filters.css">
+    <link rel="stylesheet" href="../static/styles/8-places.css">
+    <link rel="icon" href="../static/images/icon.png">
+    <title>AirBnB clone</title>
+</head>
+<body>
+    <header>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <div class="locations">
+                <h3>States</h3>
+                <h4>&nbsp;</h4>
+                <div class="popover">
+                    <ul>
+                        {% for state in states %}
+                        <li><h2>{{ state.name }}</h2>
+                            <ul>
+                                {% for city in state.cities %}
+                                <li class="city">{{ city.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>&nbsp;</h4>
+                <div class="popover">
+                    <ul>
+                        {% for amenity in amenities %}
+                        <li>{{ amenity.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <button class="button_search" type="button">Search</button>
+        </section>
+        <section class="places">
+            <h1>Places</h1>
+            <div class="place_items">
+                {% for place in places %}
+                <article>
+                    <div class="title">
+                        <h2>{{ place.name }}</h2>
+                        <div class="price_by_night"><p>${{ place.price_by_night }}</p></div>
+                    </div>
+                    <div class="information">
+                        <div class="max_guest"><p>{{ place.max_guest }} Guests</p></div>
+                        <div class="number_rooms"><p>{{ place.number_rooms }} Bedroom</p></div>
+                        <div class="number_bathrooms"><p>{{ place.number_bathrooms }} Bathroom</p></div>
+                    </div>
+                    <div class="User">
+                        <p><b>Owner:</b> Jhon Lennon</p>
+                    </div>
+                    <div class="description">
+                        <p>This is a lovely 1 bedroom and 1 bathroom apartment that can accommodate 2 people. It locates at the center of Shanghai and next to subway line 1, 1 stop top People Square, 2 stops to Bund, 3 stops to Jingan Temple.</p>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+    <footer>
+        <span class="footer_placeholder">Holberton School</span>
+    </footer>
+</body>
+</html>
