@@ -38,8 +38,10 @@
 }
 
 .title h2 {
-  position: absolute;
-  margin-top: 14px;
+  position: relative;
+  margin-left: 0;
+  padding: 0;
+  text-align: left;
 }
 
 .price_by_night {
@@ -49,7 +51,9 @@
   min-width: 60px;
   height: 60px;
   font-size: 30px;
-  margin-left: 80%;
+  margin-left: 0;
+  margin-top: 0;
+  padding: 2%;
 }
 
 .price_by_night p {

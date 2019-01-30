@@ -59,10 +59,10 @@
                         <div class="number_bathrooms"><p>{{ place.number_bathrooms }} Bathroom</p></div>
                     </div>
                     <div class="User">
-                        <p><b>Owner:</b> Jhon Lennon</p>
+                        <p><b>Owner:</b> {{ place.user_id }}</p>
                     </div>
                     <div class="description">
-                        <p>This is a lovely 1 bedroom and 1 bathroom apartment that can accommodate 2 people. It locates at the center of Shanghai and next to subway line 1, 1 stop top People Square, 2 stops to Bund, 3 stops to Jingan Temple.</p>
+                        <p>{{ place.description }}</p>
                     </div>
                 </article>
                 {% endfor %}
