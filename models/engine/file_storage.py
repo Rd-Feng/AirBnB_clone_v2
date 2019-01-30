@@ -19,12 +19,21 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
+    __clsdict = {
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+    }
 
     def all(self, cls=None):
         """returns a dictionary
         Return:
             returns a dictionary of __object
         """
+        cls = cls if not isinstance(cls, str) else self.__clsdict.get(cls)
         if cls:
             return {k: v for k, v in self.__objects.items()
                     if isinstance(v, cls)}

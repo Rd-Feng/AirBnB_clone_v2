@@ -20,12 +20,7 @@ def states_cities_list(id=None):
     """show state and cities if id is given
     otherwise list all states
     """
-    from models.state import State
-    states = (
-        storage.all("State")
-        if env.get('HBNB_TYPE_STORAGE') == 'db'
-        else storage.all(State)
-    )
+    states = storage.all("State")
     if id:
         state = states.get('State.{}'.format(id))
         states = [state] if state else []
