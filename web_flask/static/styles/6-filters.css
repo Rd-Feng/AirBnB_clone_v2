@@ -62,7 +62,11 @@
   padding-top: 10px;
   padding-bottom: 10px;
   word-wrap: break-word;
-  overflow-y: auto;
+  overflow-y: hidden;
+}
+
+.popover:hover {
+    overflow-y: auto;
 }
 
 .locations:hover .popover,
