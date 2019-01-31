@@ -27,11 +27,8 @@ def states_cities_list():
     amenities.sort(key=lambda x: x.name)
     places = list(storage.all("Place").values())
     places.sort(key=lambda x: x.name)
-    users = storage.all("User")
     for place in places:
         place.description = Markup(place.description)
-        user = users.get('User.{}'.format(place.user_id))
-        place.user_id = '{} {}'.format(user.first_name, user.last_name)
     return render_template(
         '100-hbnb.html',
         states=states,

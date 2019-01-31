@@ -59,7 +59,7 @@
                         <div class="number_bathrooms"><p>{{ place.number_bathrooms }} Bathroom</p></div>
                     </div>
                     <div class="User">
-                        <p><b>Owner:</b> {{ place.user_id }}</p>
+                        <p><b>Owner:</b> {{ place.user.first_name }} {{ place.user.last_name }}</p>
                     </div>
                     <div class="description">
                         <p>{{ place.description }}</p>
